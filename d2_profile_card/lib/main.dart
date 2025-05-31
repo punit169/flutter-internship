@@ -46,34 +46,56 @@ class ProfileCard extends StatelessWidget {
               )
             ],
           ),
-          child: const Column(
+          child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              CircleAvatar(
+              const CircleAvatar(
                 radius: 80,
                 backgroundImage: NetworkImage(
                     'https://avatars.githubusercontent.com/u/147256719?s=400&v=4'),
               ),
-              SizedBox(height: 16),
-              Text(
-                'Github: punit169',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              const SizedBox(height: 16),
+              //used when we need to style two different parts of text in single line
+              RichText(
+                text: const TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Github : ',
+                      style: TextStyle(
+                        fontFamily: 'OpenSans',
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'punit169',
+                      style: TextStyle(
+                        fontFamily: 'Pacifico',
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(height: 8),
-              Text(
+              const SizedBox(height: 8),
+              const Text(
                 'Flutter Intern',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+                style: TextStyle(
+                    fontFamily: 'OpenSans', fontSize: 18, color: Colors.grey),
               ),
-              Divider(height: 30, thickness: 1),
-              Row(
+              const Divider(height: 30, thickness: 1),
+              const Row(
                 children: [
                   Icon(Icons.email, color: Colors.teal),
                   SizedBox(width: 10),
                   Text('punitshah387@gmail.com'),
                 ],
               ),
-              SizedBox(height: 10),
-              Row(
+              const SizedBox(height: 10),
+              const Row(
                 children: [
                   Icon(Icons.location_on, color: Colors.teal),
                   SizedBox(width: 10),
