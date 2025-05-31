@@ -42,15 +42,15 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Name: Punit Shah',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
             SizedBox(height: 10),
-            Text('Role: Flutter Intern', style: TextStyle(fontSize: 18)),
+            Text('Role: Flutter Intern', style: TextStyle(fontSize: 20)),
             SizedBox(height: 20),
             Text(
               '"Believe in your dreams."',
               style: TextStyle(
                 fontStyle: FontStyle.italic,
-                fontSize: 16,
+                fontSize: 18,
                 color: Colors.grey,
               ),
               textAlign: TextAlign.center,
