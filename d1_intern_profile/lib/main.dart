@@ -41,7 +41,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Name: Punit', style: TextStyle(fontSize: 20)),
+            Text('Name: Punit Shah',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             SizedBox(height: 10),
             Text('Role: Flutter Intern', style: TextStyle(fontSize: 18)),
             SizedBox(height: 20),
@@ -50,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
               style: TextStyle(
                 fontStyle: FontStyle.italic,
                 fontSize: 16,
+                color: Colors.grey,
               ),
               textAlign: TextAlign.center,
             ),
