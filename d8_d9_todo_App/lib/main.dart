@@ -61,7 +61,7 @@ class _TodoAppState extends State<TodoApp> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: [
           Padding(
-            padding: EdgeInsets.only(right: 20.0),
+            padding: const EdgeInsets.only(right: 20.0),
             child: IconButton(
               icon: const Icon(Icons.delete_forever),
               iconSize: 30.0,
