@@ -17,7 +17,6 @@ class ToDoApp extends StatelessWidget {
       ),
       home: const TodoApp(),
       debugShowCheckedModeBanner: false,
-      // removing the debug banner
     );
   }
 }
@@ -30,6 +29,9 @@ class TodoApp extends StatefulWidget {
 }
 
 class _TodoAppState extends State<TodoApp> {
+  ToDoItem? _lastDeletedTask;
+  int? _lastDeletedTaskIndex;
+
   final List<ToDoItem> _task = [];
   final TextEditingController _taskController = TextEditingController();
 
@@ -43,8 +45,26 @@ class _TodoAppState extends State<TodoApp> {
 
   void _deletetask(int index) {
     setState(() {
+      _lastDeletedTask = _task[index];
+      _lastDeletedTaskIndex = index;
       _task.removeAt(index);
     });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Task deleted'),
+        action: SnackBarAction(
+          label: 'Undo',
+          onPressed: () {
+            setState(() {
+              if (_lastDeletedTask != null && _lastDeletedTaskIndex != null) {
+                _task.insert(_lastDeletedTaskIndex!, _lastDeletedTask!);
+              }
+            });
+          },
+        ),
+        duration: Duration(seconds: 3),
+      ),
+    );
   }
 
   void toggleTask(int index) {
@@ -122,7 +142,7 @@ class _TodoAppState extends State<TodoApp> {
                   border: OutlineInputBorder(),
                 ),
                 onSubmitted: _addTask,
-                // onSubmitted: (value) => _addTask(value), //alternative way
+                // onSubmitted: (value) => _addTask(value), //alternative
               ),
             ),
             const SizedBox(width: 10.0),
