@@ -30,7 +30,6 @@ class BottomNavPage extends StatefulWidget {
 class _BottomNavPageState extends State<BottomNavPage> {
   int _currentIndex = 0;
 
-  // List of screens
   final List<Widget> _screens = const [
     HomeScreen(),
     SearchScreen(),
