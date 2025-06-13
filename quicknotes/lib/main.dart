@@ -23,10 +23,10 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  MyHomePageState createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePageState extends State<MyHomePage> {
   final List<String> _notes = [];
   final TextEditingController _controller = TextEditingController();
 
@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Expanded(
                   child: TextField(
                     controller: _controller,
-                    decoration: InputDecoration(hintText: 'Enter note'),
+                    decoration: const InputDecoration(hintText: 'Enter note'),
                   ),
                 ),
                 IconButton(
