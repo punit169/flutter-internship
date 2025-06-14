@@ -23,10 +23,10 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
   @override
-  MyHomePageState createState() => MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> {
   final List<String> _notes = [];
   final TextEditingController _controller = TextEditingController();
 
