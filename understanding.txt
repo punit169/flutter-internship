@@ -1,0 +1,424 @@
+#demo
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        // This is the theme of your application.
+        //
+        // TRY THIS: Try running your application with "flutter run". You'll see
+        // the application has a purple toolbar. Then, without quitting the app,
+        // try changing the seedColor in the colorScheme below to Colors.green
+        // and then invoke "hot reload" (save your changes or press the "hot
+        // reload" button in a Flutter-supported IDE, or press "r" if you used
+        // the command line to start the app).
+        //
+        // Notice that the counter didn't reset back to zero; the application
+        // state is not lost during the reload. To reset the state, use hot
+        // restart instead.
+        //
+        // This works for code too, not just values: Most code changes can be
+        // tested with just a hot reload.
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+  // This widget is the home page of your application. It is stateful, meaning
+  // that it has a State object (defined below) that contains fields that affect
+  // how it looks.
+
+  // This class is the configuration for the state. It holds the values (in this
+  // case the title) provided by the parent (in this case the App widget) and
+  // used by the build method of the State. Fields in a Widget subclass are
+  // always marked "final".
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // This method is rerun every time setState is called, for instance as done
+    // by the _incrementCounter method above.
+    //
+    // The Flutter framework has been optimized to make rerunning build methods
+    // fast, so that you can just rebuild anything that needs updating rather
+    // than having to individually change instances of widgets.
+    return Scaffold(
+      appBar: AppBar(
+        // TRY THIS: Try changing the color here to a specific color (to
+        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
+        // change color while the other colors stay the same.
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: Text(widget.title),
+      ),
+      body: Center(
+        // Center is a layout widget. It takes a single child and positions it
+        // in the middle of the parent.
+        child: Column(
+          // Column is also a layout widget. It takes a list of children and
+          // arranges them vertically. By default, it sizes itself to fit its
+          // children horizontally, and tries to be as tall as its parent.
+          //
+          // Column has various properties to control how it sizes itself and
+          // how it positions its children. Here we use mainAxisAlignment to
+          // center the children vertically; the main axis here is the vertical
+          // axis because Columns are vertical (the cross axis would be
+          // horizontal).
+          //
+          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
+          // action in the IDE, or press "p" in the console), to see the
+          // wireframe for each widget.
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'You have pushed the button this many times:',
+            ),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+
+
+##basic code with naviagation
+
+import 'package:flutter/material.dart'; // Imports Flutter's material design library
+
+void main() {
+  runApp(const MyApp()); // Entry point: runs the app using MyApp widget
+}
+
+class MyApp extends StatelessWidget { // Root widget of the app
+  const MyApp({super.key}); // Constructor
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp( // Sets up the app's navigation and theme
+      title: 'Navigation Example', // App title
+      theme: ThemeData(
+        primarySwatch: Colors.blue, // Sets the primary color theme
+      ),
+      home: const Login_Page(), // Sets the first screen to Login_Page
+    );
+  }
+}
+
+class Login_Page extends StatefulWidget { // Login page as a stateful widget
+  const Login_Page({super.key}); // Constructor
+
+  @override
+  State<Login_Page> createState() => _Login_PageState(); // Creates the mutable state
+}
+
+class _Login_PageState extends State<Login_Page> { // State for Login_Page
+  final _formKey = GlobalKey<FormState>(); // Key to manage the form's state
+  final TextEditingController _nameController = TextEditingController(); // Controller for name input
+  final TextEditingController _emailController = TextEditingController(); // Controller for email input
+  final TextEditingController _passwordController = TextEditingController(); // Controller for password input
+  bool _obscurePassword = true; // Controls password visibility
+
+  void _submitForm() { // Called when the login button is pressed
+    String name = _nameController.text; // Gets name input
+    String email = _emailController.text; // Gets email input
+    String password = _passwordController.text; // Gets password input
+
+    if (_formKey.currentState?.validate() ?? false) { // Validates the form
+      Navigator.pushReplacement( // Navigates to HomePage, replacing Login_Page
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomePage(
+            name: name, // Passes name to HomePage
+            email: email, // Passes email to HomePage
+            password: password, // Passes password to HomePage
+          ),
+        ),
+      );
+    }
+  }
+
+  bool _isValidEmail(String email) { // Checks if email is valid
+    final RegExp emailRegex = RegExp(
+      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+    );
+    return emailRegex.hasMatch(email); // Returns true if email matches pattern
+  }
+
+  @override
+  Widget build(BuildContext context) { // Builds the login page UI
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Login Page'), // App bar title
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0), // Adds padding around the form
+        child: Form(
+          key: _formKey, // Associates the form with the key
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center, // Centers vertically
+            crossAxisAlignment: CrossAxisAlignment.stretch, // Stretches horizontally
+            children: [
+              TextFormField(
+                controller: _nameController, // Binds to name input
+                decoration: const InputDecoration(labelText: 'Name'), // Label
+                validator: (value) { // Validates name
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your name';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: _emailController, // Binds to email input
+                decoration: const InputDecoration(labelText: 'Email'), // Label
+                validator: (value) { // Validates email
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  } else if (!_isValidEmail(value)) {
+                    return 'Please enter a valid email address';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: _passwordController, // Binds to password input
+                obscureText: _obscurePassword, // Hides/shows password
+                decoration: InputDecoration(
+                  labelText: 'Password', // Label
+                  suffixIcon: IconButton(
+                    icon: Icon(_obscurePassword
+                        ? Icons.visibility
+                        : Icons.visibility_off), // Eye icon
+                    onPressed: () {
+                      setState(() {
+                        _obscurePassword = !_obscurePassword; // Toggles visibility
+                      });
+                    },
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20), // Adds vertical space
+              ElevatedButton(
+                onPressed: _submitForm, // Calls submit on press
+                child: const Text('Login'), // Button label
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget { // Home page after login
+  final String name; // Receives name
+  final String email; // Receives email
+  final String password; // Receives password
+  const HomePage(
+      {super.key,
+      required this.name,
+      required this.email,
+      required this.password});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Home Page'), // App bar title
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center, // Centers vertically
+            children: [
+              Text('Welcome, $name!', style: const TextStyle(fontSize: 24)), // Shows name
+              const SizedBox(height: 20),
+              Text('Your email is: $email',
+                  style: const TextStyle(fontSize: 18)), // Shows email
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SecondPage(
+                              name: name, // Passes name to SecondPage
+                              Password: password, // Passes password to SecondPage
+                            )),
+                  );
+                },
+                child: const Text('Go to Second Page'), // Button label
+              ),
+            ],
+          ),
+        )
+    );
+  }
+}
+
+class SecondPage extends StatelessWidget { // Second page after HomePage
+  const SecondPage({super.key, required this.name, required this.Password});
+  final String name; // Receives name
+  final String Password; // Receives password
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Second Page'), // App bar title
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center, // Centers vertically
+          children: [
+            Text('$name,Good to see you again!',
+                style: const TextStyle(fontSize: 24)), // Greets user
+            const SizedBox(height: 20),
+            Text('Your password is $Password',
+                style: const TextStyle(fontSize: 18)), // Shows password
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Login_Page()), // Goes back to login
+                );
+              },
+              child: const Text('Go to Login Page'), // Button label
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context); // Goes back to HomePage
+              },
+              child: const Text('Go Back to Home Page'), // Button label
+            ),
+            const SizedBox(height: 20),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+## card for login page
+
+
+
+
+// ...inside your build method...
+return Scaffold(
+  backgroundColor: Colors.grey[100], // Sets background color for the page
+  body: Center( // Centers the card on the screen
+    child: Card( // The Card widget gives elevation and rounded corners
+      elevation: 8, // Shadow depth
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16), // Rounded corners
+      ),
+      margin: const EdgeInsets.all(24), // Space around the card
+      child: Padding(
+        padding: const EdgeInsets.all(24), // Space inside the card
+        child: Form( // Form widget for validation
+          key: _formKey, // Associates the form with the key
+          child: Column(
+            mainAxisSize: MainAxisSize.min, // Wrap content vertically
+            children: [
+              Text(
+                'Login', // Title of the card
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              const SizedBox(height: 24), // Space below the title
+              TextFormField(
+                controller: _nameController, // Name input
+                decoration: const InputDecoration(labelText: 'Name'),
+                validator: (value) =>
+                  value == null || value.isEmpty ? 'Enter your name' : null,
+              ),
+              const SizedBox(height: 16), // Space between fields
+              TextFormField(
+                controller: _emailController, // Email input
+                decoration: const InputDecoration(labelText: 'Email'),
+                validator: (value) =>
+                  value == null || value.isEmpty
+                    ? 'Enter your email'
+                    : (!_isValidEmail(value) ? 'Enter a valid email' : null),
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: _passwordController, // Password input
+                obscureText: _obscurePassword, // Hide/show password
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  suffixIcon: IconButton(
+                    icon: Icon(_obscurePassword
+                        ? Icons.visibility
+                        : Icons.visibility_off),
+                    onPressed: () {
+                      setState(() {
+                        _obscurePassword = !_obscurePassword;
+                      });
+                    },
+                  ),
+                ),
+                validator: (value) =>
+                  value == null || value.isEmpty ? 'Enter your password' : null,
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton(
+                onPressed: _submitForm, // Calls your submit function
+                child: const Text('Login'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+  ),
+);
