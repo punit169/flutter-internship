@@ -51,7 +51,7 @@ class _TodoAppState extends State<TodoApp> {
     });
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Task deleted'),
+        content: const Text('Task deleted'),
         action: SnackBarAction(
           label: 'Undo',
           onPressed: () {
@@ -62,7 +62,7 @@ class _TodoAppState extends State<TodoApp> {
             });
           },
         ),
-        duration: Duration(seconds: 3),
+        duration: const Duration(seconds: 3),
       ),
     );
   }

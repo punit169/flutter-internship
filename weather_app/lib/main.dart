@@ -45,38 +45,38 @@ class WeatherHomePage extends StatelessWidget {
               ),
             ],
           ),
-          child: Column(
+          child: const Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(
+              Icon(
                 Icons.location_on,
                 size: 30,
                 color: Colors.blueAccent,
               ),
-              const SizedBox(height: 8),
-              const Text(
+              SizedBox(height: 8),
+              Text(
                 'Mumbai',
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 20),
-              const Icon(
+              SizedBox(height: 20),
+              Icon(
                 Icons.wb_cloudy,
                 size: 64,
                 color: Colors.grey,
               ),
-              const SizedBox(height: 20),
-              const Text(
+              SizedBox(height: 20),
+              Text(
                 '28°C',
                 style: TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              const SizedBox(height: 10),
-              const Text(
+              SizedBox(height: 10),
+              Text(
                 'Partly Cloudy',
                 style: TextStyle(
                   fontSize: 20,
