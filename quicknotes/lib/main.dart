@@ -13,7 +13,7 @@ class QuickNotesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'QuickNotes',
+      title: 'QuickSpace',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -771,7 +771,9 @@ class _NotesHomePageState extends State<NotesHomePage> {
     }
 
     return AppBar(
-      title: Text(_selectedTabIndex == 0 ? 'QuickNotes' : 'To-Do Tasks'),
+      title: Text(
+        _selectedTabIndex == 0 ? 'QuickSpace • Notes' : 'QuickSpace • To-Do',
+      ),
       actions: [
         IconButton(
           icon: const Icon(Icons.search),
